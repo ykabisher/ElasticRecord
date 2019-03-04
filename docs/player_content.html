@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../plugin/src/dtds.js"></script>
+    <script src="../plugin/src/player.js"></script>
+    <script src="../plugin/src/utils.js"></script>
+    <script>
+        // addEventListener support for IE8
+        function bindEvent(element, eventName, eventHandler) {
+            if (element.addEventListener) {
+                element.addEventListener(eventName, eventHandler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + eventName, eventHandler);
+            }
+        }
+
+        // Listen to messages from parent window
+        bindEvent(window, 'message', function (e) {
+            if (e.data === 'play') {
+                ePlayer.loadRecordData();
+            }
+        });
+    </script>
+</head>
+</html>
