@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        #iframe {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        body {
+            overflow: hidden;
+        }
+    </style>
+
+    <script>
+        // Send a message to the child iframe
+        var sendMessage = function(msg) {
+            // Make sure you are sending a string, and to stringify JSON
+            document.getElementById('iframe').contentWindow.postMessage(msg, '*');
+        };
+    </script>
+</head>
+<body>
+<iframe src="player_content.html" id="iframe"></iframe>
+<button style="position: absolute;" onclick="sendMessage('play');">Play</button>
+</body>
+</html>
